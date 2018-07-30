@@ -1,0 +1,75 @@
+/// typography
+/// =============================================================================
+/// Returns the font stack for a given family.
+///
+/// @group typography
+/// @param {String} $family
+///  The key for the given family.
+/// @return {String} The font stack for the family.
+
+@function font-family($family: base) {
+  $fetched-value: map-get($font-family, $family);
+
+  @if $fetched-value != null {
+    @return $fetched-value;
+  } @else {
+    @error 'Font family `#{$family}` not found. Available font families: #{available-names($font-family-data)}';
+  }
+}
+
+/// typography
+/// =============================================================================
+/// Wraps words that are two long for a container. Useful for small elements with
+/// dynamic content. Does not use a hyphen.
+///
+/// @group typography
+/// @example scss SCSS
+/// div.small {
+///    @include break-word-without-hyphen();
+///    width: 250px;
+///    height: 250px;
+/// }
+
+@mixin break-word-without-hyphen() {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  word-wrap: break-word;
+}
+
+/// typography
+/// =============================================================================
+/// Wraps words that are two long for a container. Useful for small elements with
+/// dynamic content. Breaks word with a hyphen.
+///
+/// @group typography
+/// @example scss SCSS
+/// div.small {
+///    @include break-word-with-hyphen();
+///    width: 250px;
+///    height: 250px;
+/// }
+
+@mixin break-word-with-hyphen() {
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  word-wrap: break-word;
+}
+
+/// typography
+/// =============================================================================
+/// Truncates text with an ellipsis. Useful for small elements with dynamic content.
+///
+/// @group typography
+/// @example scss SCSS
+/// div.small {
+///    @include truncate-with-ellipsis();
+///    width: 250px;
+///    height: 250px;
+/// }
+
+@mixin truncate-with-ellipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

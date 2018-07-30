@@ -1,0 +1,26 @@
+/// Returns the color value for a given color name and group.
+/// @access private
+/// @group colours
+///
+/// @author David Johnson
+/// @param {String} $hue - The color’s hue.
+/// @param {String} $value - The colour variant (e.g. dark, darker, light,
+/// lighter) of the color. Defaults to base.
+/// @return {Color} The color value.
+
+@function color($hue, $value: base) {
+  $colour: map-get(map-get($colours, $hue), $value);
+
+  @if map-has-key($colours, $colour) {
+    $colour: map-get(map-get($colours, $colour), $value);
+  }
+
+  @if type-of($colour) == color {
+    @return $colour;
+  } @else {
+    // stylelint-disable string-no-newline
+    // prettier-ignore
+    @error 'Color `#{$hue} - #{$value}` not found.';
+    // stylelint-enable
+  }
+}

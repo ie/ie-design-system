@@ -1,0 +1,11 @@
+/// A collection of basic font families. The base property contains all the
+/// necessary fonts for your page/app to render across most devices while your
+/// custom fonts load.
+///
+/// @group tokens
+/// @type Map
+
+$font-family: (
+  base: #{-apple-system, 'BlinkMacSystemFont', 'San Francisco', 'Roboto', 'Segoe UI', 'Helvetica Neue', sans-serif},
+  monospace: #{Monaco, Consolas, 'Lucida Console', monospace}
+);

@@ -1,0 +1,55 @@
+@mixin animation($animation, $duration: default, $delay: 0s) {
+  animation-delay: $delay;
+  animation-duration: map-get($animation-duration, $duration);
+  animation-name: $animation;
+}
+
+/// transition
+/// =============================================================================
+/// Adds a transition to an element.
+///
+/// @group animation
+/// @access public
+/// @author David Johnson
+/// @param {String} $transition [null]
+///   The name of the animation.
+///
+/// @param {String} $duration [default]
+///   Type duration key to use. Accepted parameters are:
+///     - slow
+///     - default
+///     - medium
+///     - long
+///
+/// @param {String} $easing [$animation-easing-base]
+///   The easing to use.
+///
+/// @param {String} $direction [in]
+///   The easing direction to use. Accepted parameters are:
+///     - in
+///     - out
+///     - in-out
+///
+/// @example scss SCSS
+///   // Example of setting vertical rhythm properties
+///   div.transition-border {
+///     @include transition(border-width);
+///     border: 1px solid #aaa;]
+///
+///     &::hover {
+///       border-width: 5px;
+///     }
+///
+///   }
+
+@mixin transition($transition, $duration: default, $easing: $animation-easing-base, $direction: in) {
+  transition: unquote($transition) map-get($animation-duration, $duration) map-get(map-get($animation-easing, $direction), $easing);
+}
+
+@mixin transition-opacity($duration: default, $easing: $animation-easing-base, $direction: in) {
+  transition: opacity map-get($animation-duration, $duration) map-get(map-get($animation-easing, $direction), $easing);
+}
+
+@mixin transition-transform($duration: default, $easing: $animation-easing-base, $direction: in) {
+  transition: transform map-get($animation-duration, $duration) map-get(map-get($animation-easing, $direction), $easing);
+}

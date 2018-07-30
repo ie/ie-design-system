@@ -1,0 +1,278 @@
+// breakpoint-next
+// =============================================================================
+/// Gets the next breakpoint in a map.
+///
+/// @group breakpoints
+/// @access private
+/// @author David Johnson
+/// @param {String} $name [null]
+///   The key.
+///   - sm
+///   - md
+///   - lg
+///   - xs
+///   - xl
+///
+/// @param {Map} $breakpoints [$breakpoints]
+///   The breakpoints map
+///
+/// @param {List} $breakpoint-names [map-keys($breakpoints)]
+///   A list of all the keys in the breakpoints map.
+///
+/// @return {String} The next breakpoint
+@function breakpoint-next($name, $breakpoints: $breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+  $n: index($breakpoint-names, $name);
+
+  @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+}
+
+// breakpoint-min
+// =============================================================================
+/// Minimum breakpoint width. Null for the smallest (first) breakpoint.
+///
+/// @group breakpoints
+/// @access private
+/// @author David Johnson
+/// @param {String} $name [null]
+///   The key.
+///   - sm
+///   - md
+///   - lg
+///   - xs
+///   - xl
+///
+/// @param {Map} $breakpoints [$breakpoints]
+///   The breakpoints map
+///
+/// @return {Number(px)} The smallest width.
+@function breakpoint-min($name, $breakpoints: $breakpoints) {
+  $min: map-get($breakpoints, $name);
+
+  @return if($min != 0, $min, null);
+}
+
+// breakpoint-max
+// =============================================================================
+/// Maximum breakpoint width. Null for the largest (last) breakpoint.
+///
+/// @group breakpoints
+/// @access private
+/// @author David Johnson
+/// @param {String} $name [null]
+///   The key.
+///   - sm
+///   - md
+///   - lg
+///   - xs
+///   - xl
+///
+/// @param {Map} $breakpoints [$breakpoints]
+///   The breakpoints map
+///
+/// @return {Number(px)} The maximum width.
+
+@function breakpoint-max($name, $breakpoints: $breakpoints) {
+  $next: breakpoint-next($name, $breakpoints);
+
+  @return if($next, breakpoint-min($next, $breakpoints) - 1px, null);
+}
+
+// media-breakpoint-up
+// =============================================================================
+/// Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
+/// Makes the @content apply to the given breakpoint and wider.
+///
+/// @group breakpoints
+/// @access public
+/// @author David Johnson
+/// @param {String} $name [null]
+///   The key.
+///   - sm
+///   - md
+///   - lg
+///   - xs
+///   - xl
+///
+/// @param {Map} $breakpoints [$breakpoints]
+///   The breakpoints map
+///
+/// @example scss SCSS
+///  body {
+///     font-size: 16px;
+///     @include media-breakpoint-up(sm) {
+///         font-size: 18px;
+///     }
+///  }
+///
+
+@mixin media-breakpoint-up($name, $breakpoints: $breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// media-breakpoint-down
+// =============================================================================
+/// Media of at most the maximum breakpoint width. No query for the largest breakpoint.
+/// Makes the @content apply to the given breakpoint and narrower.
+///
+/// @group breakpoints
+/// @access public
+/// @author David Johnson
+/// @param {String} $name [null]
+///   The key.
+///   - sm
+///   - md
+///   - lg
+///   - xs
+///   - xl
+///
+/// @param {Map} $breakpoints [$breakpoints]
+///   The breakpoints map
+///
+/// @example scss SCSS
+///  img.x-large {
+///     @include media-breakpoint-down(md) {
+///         display: none;
+///     }
+///  }
+
+@mixin media-breakpoint-down($name, $breakpoints: $breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+
+// media-breakpoint-only
+// =============================================================================
+/// Media between the breakpoint's minimum and maximum widths.
+/// No minimum for the smallest breakpoint, and no maximum for the largest one.
+/// Makes the @content apply only to the given breakpoint, not viewports any wider or narrower.
+///
+/// @group breakpoints
+/// @access public
+/// @author David Johnson
+/// @param {String} $name [null]
+///   The key.
+///   - sm
+///   - md
+///   - lg
+///   - xs
+///   - xl
+///
+/// @param {Map} $breakpoints [$breakpoints]
+///   The breakpoints map
+///
+/// @example scss SCSS
+///  div.card {
+///     width: 100%;
+///
+///     @include media-breakpoint-only(md) {
+///         width: 50%;
+///     }
+///
+///     @include media-breakpoint-up(lg) {
+///         width: 33.33%;
+///     }
+///  }
+
+@mixin media-breakpoint-only($name, $breakpoints: $breakpoints) {
+  @include media-breakpoint-up($name, $breakpoints) {
+    @include media-breakpoint-down($name, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+// media-breakpoint-between
+// =============================================================================
+/// Media that spans multiple breakpoint widths.
+/// Makes the @content apply between the min and max breakpoints
+///
+/// @group breakpoints
+/// @access public
+/// @author David Johnson
+/// @param {String} $lower [null]
+///   A key.
+///   - sm
+///   - md
+///   - lg
+///   - xs
+///   - xl
+///
+/// @param {String} $upper [null]
+///   A key.
+///   - sm
+///   - md
+///   - lg
+///   - xs
+///   - xl
+///
+/// @param {Map} $breakpoints [$breakpoints]
+///   The breakpoints map
+///
+/// @example scss SCSS
+///  div.card {
+///     width: 100%;
+///
+///     @include media-breakpoint-between(md, lg) {
+///         width: 50%;
+///     }
+///  }
+
+@mixin media-breakpoint-between($lower, $upper, $breakpoints: $breakpoints) {
+  @include media-breakpoint-up($lower, $breakpoints) {
+    @include media-breakpoint-down($upper, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+// media-pixelratio-up
+// =============================================================================
+/// Media of at least the minimum pixel ratio.
+/// Makes the @content apply to the given ratio and higher.
+///
+/// @group breakpoints
+/// @access public
+/// @author David Johnson
+/// @param {String} $ratio [null]
+///   A key.
+///   - 1
+///   - 1.5
+///   - 3
+/// @see $pixelratios
+/// @example scss SCSS
+///  div.card {
+///     background: url(background.png);
+///
+///     @include media-pixelratio-up('2') {
+///         background: url(background@2x.png);
+///     }
+///
+///     @include media-pixelratio-up('3') {
+///         background: url(background@3x.png);
+///     }
+///  }
+
+@mixin media-pixelratio-up($ratio) {
+  $ratio: map-get(map-get($pixelratios, $ratio), 'ratio');
+  $resolution: map-get(map-get($pixelratios, $ratio), 'resolution');
+
+  @media (-webkit-min-device-pixel-ratio: #{$ratio}), (min-resolution: #{$resolution}), (min-resolution: #{$ratio}dppx) {
+    @content;
+  }
+}

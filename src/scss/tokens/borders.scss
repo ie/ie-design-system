@@ -1,0 +1,11 @@
+/// The number of pixels a border radius should use.
+///
+/// @group tokens
+/// @type Length
+$border-radius: 8px;
+
+/// The number of pixels a small border radius should use.
+///
+/// @group tokens
+/// @type Length
+$border-radius--small: 4px;

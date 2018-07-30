@@ -1,0 +1,209 @@
+/// border
+/// =============================================================================
+/// Places a border on the element. NOTE: this will break the 8px grid if the
+/// border size is anything other than a multiple of 8.
+///
+/// @group borders
+/// @access public
+/// @author David Johnson
+/// @param {Length(px|%)} $size [1px]
+///   The size of the border in pixels.
+///
+/// @param {String} $type [solid]
+///   Type of border e.g.
+///     - solid
+///     - dashed
+///     - dotted
+///     - double
+///     - groove
+///     - ridge
+///     - inset
+///     - outset
+///
+/// @param {Color} $colour [#000]
+///   The colour of the border.
+///
+/// @example scss SCSS
+///   // Example of setting vertical rhythm properties
+///   div {
+///     @include border-outside(2px);
+///   }
+///
+///   div.thick-dashed-border {
+///     @include border-outside(5px, dashed);
+///   }
+///
+///   div.thick-dashed-white-border {
+///     @include border-outside(5px, dashed, #fff);
+///   }
+
+@mixin border($size: 1px, $type: solid, $colour: #000) {
+  border-color: $colour;
+  border-style: $type;
+  border-width: $size;
+}
+
+/// border-outside
+/// =============================================================================
+/// Places a border outside the element ensuring that the 8-pixel grid of
+/// elements within is preserved. This mixin adds an ::after psuedo-element to
+/// the target element, and sets the position of the target element to relative.
+///
+/// @group borders
+/// @access public
+/// @author David Johnson
+/// @param {Length(px|%)} $size [1px]
+///   The size of the border in pixels.
+///
+/// @param {String} $type [solid]
+///   Type of border e.g.
+///     - solid
+///     - dashed
+///     - dotted
+///     - double
+///     - groove
+///     - ridge
+///     - inset
+///     - outset
+///
+/// @param {Color} $colour [#000]
+///   The colour of the border.
+///
+/// @example scss SCSS
+///   // Example of setting vertical rhythm properties
+///   div {
+///     @include border-outside(2px);
+///   }
+///
+///   div.thick-dashed-border {
+///     @include border-outside(5px, dashed);
+///   }
+///
+///   div.thick-dashed-white-border {
+///     @include border-outside(5px, dashed, #fff);
+///   }
+
+@mixin border-outside($size: 1px, $type: solid, $colour: #000, $radius: $border-radius) {
+  position: relative;
+
+  &::after {
+    border-color: $colour;
+    border-radius: $radius;
+    border-style: $type;
+    border-width: $size;
+    content: '';
+    display: block;
+    height: calc(100% + (2 * #{$size}));
+    left: -$size;
+    pointer-events: none;
+    position: absolute;
+    top: -$size;
+    width: calc(100% + (2 * #{$size}));
+  }
+}
+
+/// border-radius
+/// =============================================================================
+/// Adds rounded corners to a border
+///
+/// @group borders
+/// @access public
+/// @author David Johnson
+///
+/// @param {Length(px|%)} $radius [$border-radius]
+///    The width of the border
+///
+/// @example scss SCSS
+///   // Example of setting vertical rhythm properties
+///   div.rounded-border {
+///     @include border-outside(2px);
+///     @include border-radius(4px);
+///   }
+
+@mixin border-radius($radius: $border-radius) {
+  border-radius: $radius;
+}
+
+/// border-triangle
+/// =============================================================================
+/// Creates a triangle shape, useful for tooltips/speech bubbles/etc. Should be
+/// used on an ::after or ::before psuedo-element.
+///
+/// @group borders
+/// @access public
+/// @author David Johnson
+/// @param {String} $direction [default]
+///   Where the triangle should sit. Accepted parameters:
+///   - top
+///   - bottom
+///   - left
+///   - right
+///   - topright
+///   - bottomright
+///   - bottomleft
+///   - topleft
+///
+/// @param {Length} $sizeH [null]
+///   The horizontal length of the triangle.
+///
+/// @param {Length} $sizeV [null]
+///   The vertical length of the triangle.
+///
+/// @param {Color} $color [null]
+///   The fill/stroke colour of the triangle.
+///
+/// @example scss SCSS
+///  div.quote {
+///     &::before {
+///        @include border-triangle(bottomleft, 10px, 10px, #aabbcc);
+///     }
+///  }
+///
+
+@mixin border-triangle($direction, $sizeH, $sizeV, $color) {
+  border-style: solid;
+  content: '';
+  display: block;
+  height: 0;
+  width: 0;
+
+  @if $direction == top {
+    border-color: transparent transparent $color transparent;
+    border-width: 0 $sizeV $sizeH $sizeV;
+  }
+
+  @if $direction == bottom {
+    border-color: $color transparent transparent transparent;
+    border-width: $sizeV $sizeH 0 $sizeV;
+  }
+
+  @if $direction == left {
+    border-color: transparent $color transparent transparent;
+    border-width: $sizeV $sizeH $sizeV 0;
+  }
+
+  @if $direction == right {
+    border-color: transparent transparent transparent $color;
+    border-width: $sizeV 0 $sizeV $sizeH;
+  }
+
+  @if $direction == topright {
+    border-color: transparent $color transparent transparent;
+    border-width: 0 $sizeH $sizeV 0;
+  }
+
+  @if $direction == bottomright {
+    border-color: transparent transparent $color transparent;
+    border-width: 0 0 $sizeV $sizeH;
+  }
+
+  @if $direction == bottomleft {
+    border-color: transparent transparent transparent $color;
+    border-width: $sizeH 0 0 $sizeV;
+  }
+
+  @if $direction == topleft {
+    border-color: $color transparent transparent transparent;
+    border-width: $sizeV $sizeH 0 0;
+  }
+}

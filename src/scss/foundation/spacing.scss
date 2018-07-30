@@ -1,0 +1,73 @@
+/// spacing
+/// =============================================================================
+/// Returns a number from the spacing map based on the key
+///
+/// @group spacing
+/// @access public
+/// @author David Johnson
+/// @param {String} $variant [default]
+///   The spacing variant e.g.
+///   - xxs
+///   - xs
+///   - sm
+///   - default
+///   - lg
+///   - xl
+///   - xxl
+///
+/// @param {Map} $map [$spacing-map]
+///   The map to use.
+///
+/// @example scss SCSS
+///  div.card {
+///     padding: spacing(xl);
+///  }
+///  div.card.large {
+///     padding: spacing(xl);
+///  }
+///
+
+@function spacing($variant: default, $map: $spacing-map) {
+  $value: map-get($map, $variant);
+
+  @if type-of($value) == number {
+    @return $value;
+  } @else {
+    @error 'Spacing variant `#{$variant}` not found. Available variants: #{available-names($map)}';
+  }
+}
+
+/// fibonnaci
+/// =============================================================================
+/// Returns a fibonnaci value for a given number.
+///
+/// @group spacing
+/// @access private
+/// @author David Johnson
+/// @param {Number} $n [null]
+///   The given number.
+///
+/// @example scss SCSS
+///
+///  $value: fibonnaci(1);
+///  // output: 1
+///
+///  $value: fibonnaci(2);
+///  // output: 1
+///
+///  $value: fibonnaci(7);
+///  // output: 13
+///
+///  $value: fibonnaci(135);
+///  // output: 7,308,805,952,221,443,105,020,355,490
+///
+@function fibonacci($n) {
+  $fib: 0 1;
+
+  @for $i from 1 through $n {
+    $new: nth($fib, length($fib)) + nth($fib, length($fib) - 1);
+    $fib: append($fib, $new);
+  }
+
+  @return nth($fib, length($fib));
+}

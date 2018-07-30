@@ -1,0 +1,77 @@
+/// The grid size to use. This is the most crucial variable to get right, as it
+/// should be the basis for all sizes, margins, and padding. 8px is a recommended
+/// place to start.
+///
+/// @group tokens
+/// @type Length
+
+$spacing-base-unit: 8px;
+
+/// This factor is used by the fibonnaci spacing system. Fibonacci numbers are
+/// multiplied by this number.
+///
+/// @group tokens
+/// @type Length
+
+$spacing-base-factor: 2px;
+
+/// Linear spacing map
+///
+/// @group tokens
+/// @type Map
+
+$spacing-linear: (
+  none: 0,
+  xxs: $spacing-base-unit / 4,
+  xs: $spacing-base-unit / 2,
+  default: $spacing-base-unit,
+  md: $spacing-base-unit * 2,
+  lg: $spacing-base-unit * 3,
+  xl: $spacing-base-unit * 4,
+  xxl: $spacing-base-unit * 5
+);
+
+/// Geometric spacing map
+///
+/// @group tokens
+/// @type Map
+
+$spacing-geometric: (
+  none: 0,
+  xxs: $spacing-base-unit / 4,
+  xs: $spacing-base-unit / 2,
+  default: $spacing-base-unit,
+  md: $spacing-base-unit * 2,
+  lg: $spacing-base-unit * 4,
+  xl: $spacing-base-unit * 8,
+  xxl: $spacing-base-unit * 16
+);
+
+/// Golden ratio/fibonacci map
+///
+/// @group tokens
+/// @type Map
+
+$spacing-fibonacci: (
+  none: 0,
+  xxs: $spacing-base-factor * fibonacci(2),
+  xs: $spacing-base-factor * fibonacci(3),
+  default: $spacing-base-factor * fibonacci(4),
+  md: $spacing-base-factor * fibonacci(5),
+  lg: $spacing-base-factor * fibonacci(6),
+  xl: $spacing-base-factor * fibonacci(7),
+  xxl: $spacing-base-factor * fibonacci(8)
+);
+
+/// The type of spacing map to use. Options include:
+/// - Linear ($spacing-linear)
+/// - Geometric ($spacing-geometric  - Default)
+/// - Golden ratio/fibonacci ($spacing-fibonacci)
+///
+/// @group tokens
+/// @type Map
+/// @see $spacing-linear
+/// @see $spacing-geometric
+/// @see $spacing-fibonacci
+
+$spacing-map: $spacing-geometric !default;

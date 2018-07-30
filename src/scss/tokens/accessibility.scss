@@ -1,0 +1,11 @@
+/// The number of pixels the focus border should be away from the element.
+///
+/// @group tokens
+/// @type Length
+$focus-offset-default: 1px !default;
+
+/// The border radius of the focus border
+///
+/// @group tokens
+/// @type Length
+$focus-radius:         0 !default;

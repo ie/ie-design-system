@@ -1,0 +1,182 @@
+$focus-offset-default: 3px !default;
+$focus-radius: 0 !default;
+
+// Accessibility - visually-hidden
+// =============================================================================
+/// Hides an element visually, but makes the element still accessible by screen
+/// readers
+/// @group accessibility
+/// @access public
+/// @author David Johnson
+/// @example scss SCSS
+///   // Example of setting vertical rhythm properties
+///   .icon {
+///     @include visually-hidden;
+///   }
+
+@mixin visually-hidden {
+  // stylelint-disable declaration-no-important
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  top: 0;
+  width: 1px !important;
+  // stylelint-enable declaration-no-important
+}
+
+/// focus
+/// =============================================================================
+/// This is the default mixin for setting outline styles on focusable elements.
+///
+/// @group accessibility
+/// @access public
+/// @author David Johnson
+/// @param {Length(px)} $size [$focus-offset-default]
+///   The size of the border.
+///
+/// @param {Boolean} $inside [false]
+///   A boolean flag to indicate whether the border is on the inside or the outside of the element.
+///
+/// @example scss SCSS
+///  button {
+///    @include focus();
+///  }
+
+@mixin focus($size: $focus-offset-default, $inside: false) {
+  position: relative;
+
+  &:focus {
+    outline: none;
+
+    &::after {
+      @include focus-base($size, $inside) {
+        @content;
+      }
+    }
+  }
+}
+
+/// focus-base
+/// =============================================================================
+/// This is the base style for the pseudo element that is going to render the outline.
+///
+/// @group accessibility
+/// @access public
+/// @author David Johnson
+/// @param {Length(px)} $size [null]
+///   The size of the border.
+///
+/// @param {Boolean} $inside [false]
+///   A boolean flag to indicate whether the border is on the inside or the outside of the element.
+///
+/// @example scss SCSS
+///  button {
+///     &::after {
+///        @include focus-base();
+///     }
+///  }
+
+@mixin focus-base($size: $focus-offset-default, $inside: false) {
+  $focus-offset: $size !default;
+  $focus-position: 0 !default;
+  $focus-size: 0 !default;
+
+  @if $inside == false {
+    $focus-position: -1 * $focus-offset;
+    $focus-size: calc(100% + (2 * #{$focus-offset}));
+  }
+  @else if $inside == true {
+    $focus-position: $focus-offset;
+    $focus-size: calc(100% - (2 * #{$focus-offset}));
+  }
+  border-color: currentColor;
+  border-radius: $focus-radius;
+  border-style: dotted;
+  border-width: 1px;
+  content: ' ';
+  display: block;
+  height: $focus-size;
+  left: $focus-position;
+  pointer-events: none;
+  position: absolute;
+  top: $focus-position;
+  width: $focus-size;
+
+  @content;
+}
+
+/// focus-base-colour
+/// =============================================================================
+/// This is a shortcut mixin to override the colour of the ::after element
+///
+/// @group accessibility
+/// @access public
+/// @author David Johnson
+/// @param {Color} $colour [null]
+///   The colour of the border.
+///
+/// @example scss SCSS
+///  button {
+///    &::after {
+///       @include focus-base-colour(#eee);
+///    }
+///  }
+
+@mixin focus-base-colour($colour) {
+  border-color: $colour;
+}
+
+
+/// focus-colour
+/// =============================================================================
+/// This is a shortcut mixin to override the colour of the ::after element
+/// when an element is focused
+///
+/// @group accessibility
+/// @access public
+/// @author David Johnson
+/// @param {Color} $colour [null]
+///   The colour of the border.
+///
+/// @example scss SCSS
+///  button {
+///     @include focus-base-colour(#eee);
+///  }
+
+@mixin focus-colour($colour) {
+  &:focus::after {
+    border-color: $colour;
+  }
+}
+
+/// focus-inline
+/// =============================================================================
+/// This is a mixin used for inline elements.
+///
+/// @group accessibility
+/// @access public
+/// @author David Johnson
+/// @param {Length(px)} $size [$focus-offset-default]
+///   The colour of the border.
+///
+/// @param {Length(px)} $offset [$focus-offset-default]
+///   The border offset.
+///
+/// @example scss SCSS
+///  span.download {
+///    @include focus-inline();
+///  }
+///
+///  span.download {
+///    @include focus-inline(4px);
+///  }
+
+@mixin focus-inline($size: $focus-offset-default, $offset: $focus-offset-default) {
+  &:focus {
+    outline: $size dotted currentColor;
+    outline-offset: $offset;
+  }
+}
