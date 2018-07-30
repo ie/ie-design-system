@@ -1,4 +1,12 @@
 @charset 'utf-8';
+
+/// If you do not want to include normalize.css in your project, set this
+/// variable to false.
+///
+/// @group configuration
+/// @type Boolean
+$use-normalize: true !default;
+
 @import 'vendor/normalize';
 
 @import 'foundation/accessibility';
@@ -14,3 +22,7 @@
 @import 'tokens/colours';
 @import 'tokens/spacing';
 @import 'tokens/typography';
+
+@if ($use-normalize) {
+  @include normalize();
+}
