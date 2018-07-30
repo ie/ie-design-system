@@ -5,7 +5,7 @@
 /// @group tokens
 /// @type Length
 
-$spacing-base-unit: 8px;
+$spacing-base-unit: 8px !default;
 
 /// This factor is used by the fibonnaci spacing system. Fibonacci numbers are
 /// multiplied by this number.
@@ -13,7 +13,7 @@ $spacing-base-unit: 8px;
 /// @group tokens
 /// @type Length
 
-$spacing-base-factor: 2px;
+$spacing-base-factor: 2px !default;
 
 /// Linear spacing map
 ///
