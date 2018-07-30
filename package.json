@@ -5,7 +5,7 @@
   "main": "src/main.scss",
   "scripts": {
     "dev": "sass src/scss/main.scss examples/ie-design-system.css --watch",
-    "build": "sassdoc src/scss/; sass src/scss/main.scss examples/ie-design-system.css"
+    "build": "sassdoc src/scss/ && sass src/scss/main.scss examples/ie-design-system.css"
   },
   "author": "",
   "license": "ISC",
