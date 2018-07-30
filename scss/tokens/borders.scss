@@ -2,10 +2,10 @@
 ///
 /// @group tokens
 /// @type Length
-$border-radius: 8px;
+$border-radius: 8px !default;
 
 /// The number of pixels a small border radius should use.
 ///
 /// @group tokens
 /// @type Length
-$border-radius--small: 4px;
+$border-radius--small: 4px !default;
