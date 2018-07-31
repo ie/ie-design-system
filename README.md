@@ -26,7 +26,7 @@ The below is just a brief overview of what's included, to get more extensive doc
 
 ##### Accessibility
 - `visually-hidden` mixin to hide elements but still make them available to screenreaders, useful for skip links, transcripts, etc.
-- `focus` and `focus-line` mixins to add a focus border around elements.
+- `focus` and `focus-inline` mixins to add a focus border around elements.
 
 ###### Tokens
 - `$focus-offset-default` length
