@@ -1,0 +1,13 @@
+/// The number of grid columns.
+///
+/// @group tokens
+/// @type Length
+
+$grid-columns: 12;
+
+/// The gutter size between columns.
+///
+/// @group tokens
+/// @type Length
+
+$grid-gap: 1rem;

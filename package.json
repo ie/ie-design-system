@@ -1,6 +1,6 @@
 {
   "name": "ie-design-system",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "IE Design System",
   "main": "ie-design-system.scss",
   "scripts": {
