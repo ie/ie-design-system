@@ -3,11 +3,11 @@
 /// @group tokens
 /// @type Length
 
-$grid-columns: 12;
+$grid-columns: 12 !default;
 
 /// The gutter size between columns.
 ///
 /// @group tokens
 /// @type Length
 
-$grid-gap: 1rem;
+$grid-gap: 1rem !default;
