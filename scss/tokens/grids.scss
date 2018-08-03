@@ -1,0 +1,11 @@
+/// The number of grid columns.
+///
+/// @group tokens
+/// @type Map
+
+$grids: (
+  xs: (
+    columns: 12,
+    gutter: 1rem
+  )
+) !default;
