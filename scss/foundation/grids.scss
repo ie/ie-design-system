@@ -2,14 +2,17 @@
 /// @group grid
 ///
 /// @author David Johnson
-/// @param {Number} $columns [$grid-columns]
+/// @param {Number} $columns [12]
 ///     The number of columns to use.
-/// @param {String} $row-gap [$grid-gap]
+/// @param {Length} $row-gap [0]
 ///     The gutter size between rows.
-/// @param {String} $column-gap [$grid-gap]
+/// @param {Length} $column-gap [0]
 ///     The gutter size between columns.
 
-@mixin grid($columns: $grid-columns, $row-gap: $grid-gap, $column-gap: $grid-gap) {
+@mixin grid-bespoke($columns: 12, $column-gap: 0, $row-gap: 0) {
+  @if $columns == null {
+    @error 'Grid requires columns';
+  }
   display: grid;
   grid-gap: $row-gap $column-gap;
   grid-template-columns: repeat($columns, 1fr);
@@ -35,6 +38,25 @@
   grid-template-rows: auto;
 }
 
+/// Sets the element as a grid container without any gutters.
+/// @group grid
+///
+/// @author David Johnson
+/// @param {String} $breakpoint [xs]
+
+@mixin grid-collapsed($breakpoint: xs) {
+  $grid: map-get($grids, $breakpoint);
+
+  @if $grid == null {
+    @error 'Grid `#{$breakpoint}` not found.';
+  }
+  display: grid;
+  grid-gap: 0;
+  grid-template-columns: repeat(map-get($grid, columns), 1fr);
+  grid-template-rows: auto;
+}
+
+
 /// Generates grids for all breakpoints.
 /// @group grid
 ///
@@ -46,6 +68,24 @@
       $grid: map-get($grids, $breakpoint);
       display: grid;
       grid-gap: map-get($grid, row-gap) map-get($grid, column-gap);
+      grid-template-columns: repeat(map-get($grid, columns), 1fr);
+      grid-template-rows: auto;
+    }
+  }
+}
+
+
+/// Generates collapsed grids for all breakpoints.
+/// @group grid
+///
+/// @author David Johnson
+
+@mixin grids-collapsed() {
+  @each $breakpoint, $value in $grids {
+    @include media-breakpoint-up($breakpoint) {
+      $grid: map-get($grids, $breakpoint);
+      display: grid;
+      grid-gap: 0;
       grid-template-columns: repeat(map-get($grid, columns), 1fr);
       grid-template-rows: auto;
     }

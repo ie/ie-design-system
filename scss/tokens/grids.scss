@@ -6,6 +6,7 @@
 $grids: (
   xs: (
     columns: 12,
-    gutter: 1rem
+    column-gap: 1rem,
+    row-gap: 1rem
   )
 ) !default;
