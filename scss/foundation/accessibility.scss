@@ -83,6 +83,7 @@ $focus-radius: 0 !default;
   $focus-offset: $size !default;
   $focus-position: 0 !default;
   $focus-size: 0 !default;
+  $z-index: 9999;
 
   @if $inside == false {
     $focus-position: -1 * $focus-offset;
@@ -104,6 +105,7 @@ $focus-radius: 0 !default;
   position: absolute;
   top: $focus-position;
   width: $focus-size;
+  z-index: $z-index;
 
   @content;
 }
