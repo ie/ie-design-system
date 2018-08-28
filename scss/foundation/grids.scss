@@ -17,6 +17,8 @@
   grid-gap: $row-gap $column-gap;
   grid-template-columns: repeat($columns, 1fr);
   grid-template-rows: auto;
+
+  @content;
 }
 
 /// Sets the element as a grid container for a specific breakpoint.
@@ -32,10 +34,15 @@
   @if $grid == null {
     @error 'Grid `#{$breakpoint}` not found.';
   }
-  display: grid;
-  grid-gap: map-get($grid, row-gap) map-get($grid, column-gap);
-  grid-template-columns: repeat(map-get($grid, columns), 1fr);
-  grid-template-rows: auto;
+
+  @include media-breakpoint-up($breakpoint) {
+    display: grid;
+    grid-gap: map-get($grid, row-gap) map-get($grid, column-gap);
+    grid-template-columns: repeat(map-get($grid, columns), 1fr);
+    grid-template-rows: auto;
+
+    @content;
+  }
 }
 
 /// Sets the element as a grid container without any gutters.
@@ -50,10 +57,15 @@
   @if $grid == null {
     @error 'Grid `#{$breakpoint}` not found.';
   }
-  display: grid;
-  grid-gap: 0;
-  grid-template-columns: repeat(map-get($grid, columns), 1fr);
-  grid-template-rows: auto;
+
+  @include media-breakpoint-up($breakpoint) {
+    display: grid;
+    grid-gap: 0;
+    grid-template-columns: repeat(map-get($grid, columns), 1fr);
+    grid-template-rows: auto;
+
+    @content;
+  }
 }
 
 
@@ -70,6 +82,8 @@
       grid-gap: map-get($grid, row-gap) map-get($grid, column-gap);
       grid-template-columns: repeat(map-get($grid, columns), 1fr);
       grid-template-rows: auto;
+
+      @content;
     }
   }
 }
@@ -88,6 +102,8 @@
       grid-gap: 0;
       grid-template-columns: repeat(map-get($grid, columns), 1fr);
       grid-template-rows: auto;
+
+      @content;
     }
   }
 }
@@ -134,6 +150,8 @@
 
   @include media-breakpoint-up($breakpoint) {
     grid-column: unquote('#{$start} / #{$end}');
+
+    @content;
   }
 }
 
