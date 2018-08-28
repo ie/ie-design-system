@@ -17,7 +17,7 @@
 /// @param {String} $duration [default]
 ///   Type duration key to use. Accepted parameters are:
 ///     - slow
-///     - default
+///     - default-
 ///     - medium
 ///     - long
 ///
@@ -43,7 +43,8 @@
 ///   }
 
 @mixin transition($transition, $duration: default, $easing: $animation-easing-base, $direction: in) {
-  transition: unquote($transition) map-get($animation-duration, $duration) map-get(map-get($animation-easing, $direction), $easing);
+  transition: all map-get($animation-duration, $duration) map-get(map-get($animation-easing, $direction), $easing);
+  transition-property: unquote($transition);
 }
 
 @mixin transition-opacity($duration: default, $easing: $animation-easing-base, $direction: in) {
