@@ -1,6 +1,6 @@
 {
   "name": "ie-design-system",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "IE Design System",
   "main": "ie-design-system.scss",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "sassdoc scss/ && sass ie-design-system.scss examples/ie-design-system.css"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "sass": "^1.10.1",
     "sassdoc": "^2.5.0",
