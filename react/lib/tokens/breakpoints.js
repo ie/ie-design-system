@@ -21,3 +21,12 @@ export let pixelRatios = {
     resolution: '288dpi'
   }
 };
+
+// Override functions
+export const setBreakpoints = (map) => {
+  breakpoints = map;
+}
+
+export const setPixelRatios = (map) => {
+  pixelRatios = map;
+}
