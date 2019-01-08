@@ -16,6 +16,19 @@ export {
   visuallyHidden
 } from './foundation/accessibility';
 
+// Animation
+export {
+  animation,
+  transition
+} from './foundation/animation';
+
+export {
+  animationDuration,
+  animationEasing,
+  setAnimationDuration,
+  setAnimationEasing
+} from './tokens/animation';
+
 // Breakpoints
 export {
   breakpoints,
