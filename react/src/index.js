@@ -13,7 +13,7 @@ const setPixelRatios = (map) => {
   pixelRatios = map;
 }
 
-export default {
+export {
   // Tokens
   breakpoints,
   pixelRatios,
