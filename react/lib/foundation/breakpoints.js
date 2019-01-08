@@ -7,7 +7,7 @@ export const above = Object.keys(breakpoints).reduce((accumulator, label) => {
       ${css(...args)};
     }
   `
-  return accumulator
+  return accumulator;
 }, {})
 
 export const below = Object.keys(breakpoints).reduce((accumulator, label) => {
@@ -16,5 +16,5 @@ export const below = Object.keys(breakpoints).reduce((accumulator, label) => {
       ${css(...args)};
     }
   `
-  return accumulator
+  return accumulator;
 }, {})
