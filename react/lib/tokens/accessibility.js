@@ -1,6 +1,6 @@
-export let focusOffset = '1px';
-export let focusWidth = '1px';
-export let focusRadius = '0px';
+export let focusOffset = 1;
+export let focusWidth = 1;
+export let focusRadius = 0;
 
 export const setFocusOffset = (offset) => {
   focusOffset = offset;
