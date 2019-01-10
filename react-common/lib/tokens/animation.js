@@ -39,9 +39,11 @@ export let animationEasing = {
 }
 
 export const setAnimationDuration = (map) => {
+  if (typeof map !== 'object') throw new Error('durations must be an object map');
   animationDuration = map;
 }
 
 export const setAnimationEasing = (map) => {
+  if (typeof map !== 'object') throw new Error('easings must be an object map');
   animationEasing = map;
 }

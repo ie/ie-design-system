@@ -44,7 +44,8 @@ export {
 
 // Borders
 export {
-  borderRadius
+  borderRadius,
+  setBorderRadius
 } from './tokens/borders'
 
 export {
@@ -59,3 +60,13 @@ export {
   units,
   setUnits
 } from './tokens/units'
+
+// Colours
+export {
+  colours,
+  setColours
+} from './tokens/colours'
+
+export {
+  colour
+} from './foundation/colours'

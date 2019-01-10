@@ -31,13 +31,13 @@ export const borderOutside = (width = 1, type = 'solid', colour = 'currentColor'
 }
 
 export const borderRounded = (radius = 'default') => {
-  const rad = typeof borderRadius[radius] === 'undefined' ? borderRadius.default : borderRadius[radius];
+  if (typeof borderRadius[radius] === 'undefined') throw new Error('radius ${radius} not found');
 
   return css`
-    border-radius: ${rad}${units};
+    border-radius: ${borderRadius[radius]}${units};
 
     &::after {
-      border-radius: ${rad}${units};
+      border-radius: ${borderRadius[radius]}${units};
     }
   `
 }
