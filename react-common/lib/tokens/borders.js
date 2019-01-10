@@ -5,6 +5,6 @@ export let borderRadius = {
 }
 
 export const setBorderRadius = (map) => {
-  if (typeof map !== 'object') throw new Error('radii must be an object map');
+  if (typeof map !== 'object') throw new Error('radius map must be an object');
   borderRadius = map;
 }

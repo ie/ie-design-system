@@ -67,6 +67,11 @@ export {
   setColours
 } from './tokens/colours'
 
+// Spacing
 export {
-  colour
-} from './foundation/colours'
+  spacing,
+  spacingFibonacci,
+  spacingGeometric,
+  spacingLinear,
+  setSpacing
+} from './tokens/spacing'

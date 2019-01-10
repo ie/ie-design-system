@@ -16,6 +16,6 @@ export let colours = {
 }
 
 export const setColours = (map) => {
-  if (typeof map !== 'object') throw new Error('colours must be an object map');
+  if (typeof map !== 'object') throw new Error('colours map must be an object');
   colours = map;
 }

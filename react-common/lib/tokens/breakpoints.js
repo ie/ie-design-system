@@ -24,11 +24,11 @@ export let pixelRatios = {
 
 // Override functions
 export const setBreakpoints = (map) => {
-  if (typeof map !== 'object') throw new Error('breakpoints must be an object map');
+  if (typeof map !== 'object') throw new Error('breakpoint map must be an object');
   breakpoints = map;
 }
 
 export const setPixelRatios = (map) => {
-  if (typeof map !== 'object') throw new Error('pixel ratios must be an object map');
+  if (typeof map !== 'object') throw new Error('pixel ratio map must be an object');
   pixelRatios = map;
 }
