@@ -32,13 +32,13 @@ export const spacingGeometric = {
 
 export const spacingFibonacci = {
   none: 0,
-  xxs: `${spacingBaseFactor * fibonacci(2)}`,
-  xs: `${spacingBaseFactor * fibonacci(3)}`,
-  default: `${spacingBaseFactor * fibonacci(4)}`,
-  md: `${spacingBaseFactor * fibonacci(5)}`,
-  lg: `${spacingBaseFactor * fibonacci(6)}`,
-  xl: `${spacingBaseFactor * fibonacci(7)}`,
-  xxl: `${spacingBaseFactor * fibonacci(8)}`
+  xxs: `${spacingBaseFactor * fibonacci(2)}${units}`,
+  xs: `${spacingBaseFactor * fibonacci(3)}${units}`,
+  default: `${spacingBaseFactor * fibonacci(4)}${units}`,
+  md: `${spacingBaseFactor * fibonacci(5)}${units}`,
+  lg: `${spacingBaseFactor * fibonacci(6)}${units}`,
+  xl: `${spacingBaseFactor * fibonacci(7)}${units}`,
+  xxl: `${spacingBaseFactor * fibonacci(8)}${units}`
 }
 
 export let spacing = spacingGeometric;

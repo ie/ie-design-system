@@ -75,3 +75,20 @@ export {
   spacingLinear,
   setSpacing
 } from './tokens/spacing'
+
+// Typography
+export {
+  typeSizeBase,
+  typeScale,
+  typeScales,
+  typeSizes,
+  setTypeScale,
+  setTypeSize
+} from './tokens/typography'
+
+export {
+  breakWordWithHyphen,
+  breakWordWithoutHyphen,
+  truncateWithEllipsis,
+  getTypeScale
+} from './foundation/typography'
