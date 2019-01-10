@@ -6,7 +6,7 @@ export {
   setFocusOffset,
   setFocusRadius,
   setFocusWidth
-} from './tokens/accessibility';
+} from './tokens/accessibility'
 
 export {
   focusState,
@@ -14,20 +14,20 @@ export {
   focusStateColour,
   focusStateInline,
   visuallyHidden
-} from './foundation/accessibility';
+} from './foundation/accessibility'
 
 // Animation
 export {
   animation,
   transition
-} from './foundation/animation';
+} from './foundation/animation'
 
 export {
   animationDuration,
   animationEasing,
   setAnimationDuration,
   setAnimationEasing
-} from './tokens/animation';
+} from './tokens/animation'
 
 // Breakpoints
 export {
@@ -35,9 +35,27 @@ export {
   pixelRatios,
   setBreakpoints,
   setPixelRatios
-} from './tokens/breakpoints';
+} from './tokens/breakpoints'
 
 export {
   above,
   below
-} from './foundation/breakpoints';
+} from './foundation/breakpoints'
+
+// Borders
+export {
+  borderRadius
+} from './tokens/borders'
+
+export {
+  border,
+  borderOutside,
+  borderRounded,
+  borderTriangle
+} from './foundation/borders'
+
+// Units
+export {
+  units,
+  setUnits
+} from './tokens/units'

@@ -1,16 +1,17 @@
 import { css } from 'styled-components'
 import { focusRadius, focusOffset, focusWidth } from '../tokens/accessibility'
+import { units } from '../tokens/units'
 
 export const visuallyHidden = () => {
   return css`
     border: 0 !important;
-    clip: rect(1px, 1px, 1px, 1px) !important;
-    height: 1px !important;
+    clip: rect(1${units}, 1${units}, 1${units}, 1${units}) !important;
+    height: 1${units} !important;
     overflow: hidden !important;
     padding: 0 !important;
     position: absolute !important;
     top: 0;
-    width: 1px !important;
+    width: 1${units} !important;
   `;
 }
 
@@ -32,21 +33,21 @@ export const focusState = (...args) => {
 
 export const focusStateBase = (...args) => {
   let focusPosition = focusOffset;
-  let focusSize = `calc(100% + (2 * ${focusOffset}px))`;
+  let focusSize = `calc(100% + (2 * ${focusOffset}${units}))`;
 
   return css`
     border-color: currentColor;
-    border-radius: ${focusRadius};
+    border-radius: ${focusRadius}${units};
     border-style: dotted;
-    border-width: 1px;
-    content: ' ';
+    border-width: 1${units};
+    content: '';
     display: block;
-    height: ${focusSize}px;
-    left: ${focusPosition}px;
+    height: ${focusSize};
+    left: ${focusPosition}${units};
     pointer-events: none;
     position: absolute;
-    top: ${focusPosition}px;
-    width: ${focusSize}px;
+    top: ${focusPosition}${units};
+    width: ${focusSize};
     z-index: 9999;
 
     ${args};
@@ -67,7 +68,7 @@ export const focusStateInline = () => {
   return css`
     &:focus {
       outline: ${focusWidth}px dotted currentColor;
-      outline-offset: ${focusOffset}px;
+      outline-offset: ${focusOffset}${units};
     }
   `;
 }
