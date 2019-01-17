@@ -52,7 +52,7 @@ export const setTypeSize = (size) => {
   typeSizeBase = size;
 }
 
-export const setTypeSizes = (sizes) => {
+export const setTypeSizes = (map) => {
   if (typeof map !== 'object') throw new Error('type size map must be an object');
-  typeSizes = sizes;
+  typeSizes = map;
 }
