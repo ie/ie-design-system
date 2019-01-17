@@ -16,5 +16,8 @@
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
     "eslint": "^5.12.0"
-  }
+  },
+  "bundledDependencies": [
+    "modularscale-js", "styled-components"
+  ]
 }
