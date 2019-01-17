@@ -83,7 +83,8 @@ export {
   typeScales,
   typeSizes,
   setTypeScale,
-  setTypeSize
+  setTypeSize,
+  setTypeSizes,
 } from './tokens/typography'
 
 export {
