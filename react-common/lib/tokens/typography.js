@@ -11,21 +11,21 @@ const typeSettings = {
 }
 
 export const typeScales = {
-  minorSecond: 16/15,
+  minorSecond: 16 / 15,
   majorSecond: 1.125,
   minorThird: 1.2,
   majorThird: 1.25,
-  perfectFourth: 4/3,
+  perfectFourth: 4 / 3,
   augFourth: 1.414,
   perfectFifth: 1.5,
   minorSixth: 1.6,
   goldenSection: 1.61803398875,
-  majorSixth: 5/3,
-  minorSeventh: 16/9,
+  majorSixth: 5 / 3,
+  minorSeventh: 16 / 9,
   majorSeventh: 1.875,
   octave: 2,
   majorTenth: 2.5,
-  majorEleventh: 8/3,
+  majorEleventh: 8 / 3,
   majorTwelfth: 3,
   doubleOctave: 4,
 }
@@ -48,16 +48,11 @@ export const setTypeScale = (map) => {
 }
 
 export const setTypeSize = (size) => {
-  if (typeof map !== 'number') throw new Error('base type size must be a number');
+  if (typeof size !== 'number') throw new Error('base type size must be a number');
   typeSizeBase = size;
 }
 
 export const setTypeSizes = (map) => {
   if (typeof map !== 'object') throw new Error('type size map must be an object');
   typeSizes = map;
-}
-
-export const setTypeSizes = (sizes) => {
-  if (typeof sizes !== 'object') throw new Error('type scale map must be an object');
-  typeSizes = sizes
 }
