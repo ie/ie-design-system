@@ -56,3 +56,8 @@ export const setTypeSizes = (map) => {
   if (typeof map !== 'object') throw new Error('type size map must be an object');
   typeSizes = map;
 }
+
+export const setTypeSizes = (sizes) => {
+  if (typeof sizes !== 'object') throw new Error('type scale map must be an object');
+  typeSizes = sizes
+}
