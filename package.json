@@ -5,7 +5,8 @@
   "main": "ie-design-system.scss",
   "scripts": {
     "dev": "sass ie-design-system.scss examples/ie-design-system.css --watch",
-    "build": "sassdoc scss/ && sass ie-design-system.scss examples/ie-design-system.css"
+    "build": "sassdoc scss/ && sass ie-design-system.scss examples/ie-design-system.css",
+    "postinstall": "cd ./react-common && npm install"
   },
   "author": "",
   "license": "MIT",

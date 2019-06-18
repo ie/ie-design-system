@@ -37,9 +37,9 @@
   }
 }
 
-/// fibonnaci
+/// fibonacci
 /// =============================================================================
-/// Returns a fibonnaci value for a given number.
+/// Returns a fibonacci value for a given number.
 ///
 /// @group spacing
 /// @access private
@@ -49,16 +49,16 @@
 ///
 /// @example scss SCSS
 ///
-///  $value: fibonnaci(1);
+///  $value: fibonacci(1);
 ///  // output: 1
 ///
-///  $value: fibonnaci(2);
+///  $value: fibonacci(2);
 ///  // output: 1
 ///
-///  $value: fibonnaci(7);
+///  $value: fibonacci(7);
 ///  // output: 13
 ///
-///  $value: fibonnaci(135);
+///  $value: fibonacci(135);
 ///  // output: 7,308,805,952,221,443,105,020,355,490
 ///
 @function fibonacci($n) {

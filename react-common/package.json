@@ -1,0 +1,23 @@
+{
+  "name": "ie-design-system-react",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel src -o dist/index.js",
+    "lint": "eslint lib/**/*.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "modularscale-js": "^3.0.1",
+    "styled-components": "^4.1.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "eslint": "^5.12.0"
+  },
+  "bundledDependencies": [
+    "modularscale-js", "styled-components"
+  ]
+}
